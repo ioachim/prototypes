@@ -1,4 +1,4 @@
-require 'list'
+require '../common/list'
 
 char = { name='LJ', hp=100, maxHp=100, ap=10, maxAp=20, attack = { name="Downhill Strike", cost=12, timer=3 }}
 
@@ -27,7 +27,7 @@ end
 
 function love.draw()
     love.graphics.push()
-    love.graphics.scale(2, 2)
+    -- love.graphics.scale(2, 2)
     love.graphics.print("Hello, LÖVE", 0, 10)
     drawPlayer(char, 10, 250)
     drawAttacks(50, 200)
@@ -101,7 +101,7 @@ function love.keypressed(key, unicode)
     elseif key == 'z' then
         if char.ap > char.attack.cost then
             char.ap = char.ap - char.attack.cost
-            attackQueue:pushLast( {attack = char.attack, timer=5} )
+            attackQueue:pushLast( {attack = char.attack, timer=char.attack.timer} )
         end
     end
 end
